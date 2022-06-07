@@ -15,15 +15,14 @@
                     <div class="ontario-row">
                         <div class="ontario-columns ontario-small-12 ontario-application-subheader__container">
                             <p class="ontario-application-subheader__heading">
-                                <a href="#">Vernacular</a>
+                                <a href="/">Vernacular Acronym Search</a>
                             </p>
 
                             <div class="ontario-application-subheader__menu-container">
                                 <ul class="ontario-application-subheader__menu ontario-show-for-large">
-                                    <li><a href="#">Link A</a></li>
-                                    <li><a href="#">Link B</a></li>
-                                    <li><a href="#">Link C</a></li>
-
+                                    <li><a href="/search">Search Acronym</a></li>
+                                    <li><a href="/list">Full List</a></li>
+                                    <li><a href="/create">Create New</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -36,10 +35,7 @@
 
 </template>
 
-<script>
-export default {
-    name: 'Header'
-}
+<script setup>
 </script>
 
 <style scoped>

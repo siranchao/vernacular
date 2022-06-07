@@ -2,14 +2,15 @@
   <div class="search-bar">
     <h3>Acronyms Dictionary</h3>
     <input id="search" type="text" v-model="keyword" placeholder="Enter acronym" @keyup.enter="search(keyword)" />
-    <button class="btn ontario-button" @click="search(keyword)" :disabled="keyword == ''">Search</button>
+    <button class="btn ontario-button" @click="search(keyword)" :disabled="keyword == ''">
+      Search
+    </button>
   </div>
 </template>
 
 <script>
-
 export default {
-  props: ['search'],
+  props: ["search"],
 
   data() {
     return {
