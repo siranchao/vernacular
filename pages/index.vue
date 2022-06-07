@@ -10,11 +10,17 @@
 
             <div class="slot search-bar">
                 <h3>Acronyms Dictionary</h3>
-                <input id="search" type="text" v-model="keyword" placeholder="Enter acronym"
-                    @keyup.enter="search(keyword)" />
-                <button class="btn ontario-button" to="/search" @click="search(keyword)" :disabled="keyword == ''">
+                <!-- <input id="search" type="text" v-model="keyword" placeholder="Enter acronym"
+                    @keyup.enter="search(keyword)" /> -->
+                <!-- <button class="btn ontario-button" to="/search" @click="search(keyword)" :disabled="keyword == ''">
                     Search
-                </button>
+                </button> -->
+                <!-- <button class="btn ontario-button" to="/search">
+                    <a href="/search">Start Playing</a>
+                </button> -->
+
+                <a class="btn ontario-button" href="/search">Start Playing</a>
+
             </div>
         </main>
         <div class="slot">
@@ -52,5 +58,9 @@ main {
 .search-bar {
     margin: 2.5rem auto;
     text-align: center;
+}
+
+.btn a {
+    text-decoration: none;
 }
 </style>
