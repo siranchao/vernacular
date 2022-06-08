@@ -22,14 +22,18 @@ export default {
 
 <style scoped>
 #search {
+  display: inline-block;
+  vertical-align: middle;
   font-size: 1.5em;
   height: 1.5em;
-  padding: 5px;
-  margin-left: 10px;
-  padding-left: 10px;
+  margin-right: 5px;
 }
 
 .btn {
-  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #0066CC;
+  color: white;
+  margin: 0px;
 }
 </style>

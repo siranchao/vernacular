@@ -1,26 +1,20 @@
 <template>
-    <div class="container">
-        <main>
-            <div class="slot">
-                <Header />
-            </div>
-            <div class="slot">
-                <Logo />
-            </div>
 
+    <Head>
+        <Title>Vernacular - Home</Title>
+        <Meta name="description" content="Home page" />
+    </Head>
+    <div class="page-container">
+        <div class="slot">
+            <Header />
+        </div>
+        <main id="main-slot">
             <div class="slot search-bar">
                 <h3>Acronyms Dictionary</h3>
-                <!-- <input id="search" type="text" v-model="keyword" placeholder="Enter acronym"
-                    @keyup.enter="search(keyword)" /> -->
-                <!-- <button class="btn ontario-button" to="/search" @click="search(keyword)" :disabled="keyword == ''">
-                    Search
-                </button> -->
-                <!-- <button class="btn ontario-button" to="/search">
-                    <a href="/search">Start Playing</a>
-                </button> -->
-
-                <a class="btn ontario-button" href="/search">Start Playing</a>
-
+                <input id="first-search" type="text" v-model="keyword" placeholder="Enter acronym" />
+                <button class="start-btn ontario-button" type="button">
+                    <a id="start-btn-text" href="/search">Search</a>
+                </button>
             </div>
         </main>
         <div class="slot">
@@ -31,14 +25,31 @@
 
 <script setup>
 import list from '@/src/data/MOCK_DATA.json'
-
 </script>
 
 
-<style>
-@import "@/ontario-design-system/styles/ds-theme.css";
+<style scoped>
+.start-btn {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #0066CC;
+    margin: 0px !important;
+}
 
-.container {
+#start-btn-text {
+    color: white;
+    text-decoration: none;
+}
+
+#first-search {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.5em;
+    height: 1.5em;
+    margin-right: 5px;
+}
+
+.page-container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -46,21 +57,20 @@ import list from '@/src/data/MOCK_DATA.json'
 
 main {
     flex: 1;
-}
-
-#search {
-    font-size: 1.5em;
-    height: 1.5em;
-    padding: 5px;
-    margin-right: 10px;
+    background: url(@/src/assets/spring.jpg);
 }
 
 .search-bar {
-    margin: 2.5rem auto;
+    padding-top: 3rem;
     text-align: center;
 }
 
-.btn a {
+#btn-index {
+    margin-top: 2rem;
+}
+
+#btn-index a {
     text-decoration: none;
+    color: #EDEDED;
 }
 </style>

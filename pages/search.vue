@@ -1,4 +1,9 @@
 <template>
+
+  <Head>
+    <Title>Vernacular - Search Acronym</Title>
+    <Meta name="description" content="Search an acronym" />
+  </Head>
   <div class="slot">
     <Header />
   </div>
@@ -47,19 +52,19 @@ export default {
 };
 </script>
 
-<style>
-@import "@/ontario-design-system/styles/ds-theme.css";
-
+<style scoped>
 #search-bar {
-  margin: 2.5rem auto;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   text-align: center;
+  background: url(@/src/assets/spring.jpg);
 }
 
 #grid {
   background-color: #EDEDED;
   width: 80vw;
   margin: auto;
-  padding: 30px;
+  padding-top: 30px;
   padding-bottom: 3rem;
   display: grid;
   gap: 15px;

@@ -1,5 +1,10 @@
 <template>
-    <div class="container">
+
+    <Head>
+        <Title>Vernacular - Full Acronym List</Title>
+        <Meta name="description" content="Full acronym list" />
+    </Head>
+    <div class="page-container">
         <main>
             <div class="slot">
                 <Header />
