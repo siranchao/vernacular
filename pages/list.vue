@@ -12,6 +12,7 @@
 
             <div class="slot">
                 <h2>full list: </h2>
+                <p>{{ list }}</p>
             </div>
         </main>
 
@@ -21,6 +22,10 @@
         </div>
     </div>
 </template>
+
+<script setup>
+const { data: list } = await useFetch('/api/data')
+</script>
 
 <style scoped>
 </style>

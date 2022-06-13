@@ -9,5 +9,10 @@
   "devDependencies": {
     "nuxt": "3.0.0-rc.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.6",
+    "morgan": "^1.10.0"
+  }
 }

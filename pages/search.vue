@@ -15,7 +15,7 @@
   </div>
   <div class="slot" id="results">
     <div id="grid">
-      <Cards :cards="data" />
+      <Cards :cards="list" />
     </div>
   </div>
   <div class="slot">
@@ -23,34 +23,34 @@
   </div>
 </template>
 
-<script>
-import list from '@/src/data/MOCK_DATA.json'
+<script setup>
+import mock_data from '@/src/data/MOCK_DATA'
 
-export default {
-  data() {
-    return {
-      data: list
-    };
-  },
-  methods: {
-    search(keywords) {
-      this.resetData();
-      this.data = this.data.filter((card) => {
-        return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
-      });
-    },
-    classify(letter) {
-      this.resetData();
-      this.data = this.data.filter((card) => {
-        return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
-      })
-    },
-    resetData() {
-      this.data = list;
-    },
-  },
-};
+const {data: raw} = await useFetch("/api/data")
+let list = raw
+
+console.log(raw)
+console.log(mock_data)
+
+const search = (keywords) => {
+  resetData();
+  list = list.filter((card) => {
+    return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
+  });
+}
+
+const classify = (letter) => {
+  resetData();
+  list = list.filter((card) => {
+    return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
+  })
+}
+
+const resetData = () => {
+  list = raw
+}
 </script>
+
 
 <style scoped>
 #search-bar {

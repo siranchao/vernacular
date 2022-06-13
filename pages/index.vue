@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import list from '@/src/data/MOCK_DATA.json'
+
 </script>
 
 
@@ -57,6 +57,9 @@ import list from '@/src/data/MOCK_DATA.json'
 
 main {
     flex: 1;
+}
+
+#main-slot {
     background: url(@/src/assets/spring.jpg);
 }
 
