@@ -1,7 +1,7 @@
 <template>
   <div class="letter-search">
-    <button v-for="letter in letters" class="letter-button" @click="classify(letter)">{{ letter }}</button>
-    <!-- <button class="letter-button" @click="classify('b')">B</button>
+    <button class="letter-button" @click="classify('a')">A</button>
+    <button class="letter-button" @click="classify('b')">B</button>
     <button class="letter-button" @click="classify('c')">C</button>
     <button class="letter-button" @click="classify('d')">D</button>
     <button class="letter-button" @click="classify('e')">E</button>
@@ -25,18 +25,13 @@
     <button class="letter-button" @click="classify('w')">W</button>
     <button class="letter-button" @click="classify('x')">X</button>
     <button class="letter-button" @click="classify('y')">Y</button>
-    <button class="letter-button" @click="classify('z')">Z</button> -->
+    <button class="letter-button" @click="classify('z')">Z</button>
   </div>
 </template>
 
 <script>
 export default {
   props: ["classify"],
-  data() {
-    return {
-      letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    }
-  }
 }
 </script>
 

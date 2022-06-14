@@ -21,6 +21,14 @@ export default {
 </script>
 
 <style scoped>
+.search-bar {
+  margin: auto;
+  background-color: rgba(255,255,255,0.85);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 32rem;
+}
+
 #search {
   display: inline-block;
   vertical-align: middle;

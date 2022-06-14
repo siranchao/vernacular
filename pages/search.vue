@@ -1,61 +1,68 @@
 <template>
-
   <Head>
     <Title>Vernacular - Search Acronym</Title>
     <Meta name="description" content="Search an acronym" />
   </Head>
-  <div class="slot">
-    <Header />
-  </div>
-  <div class="slot" id="search-bar">
+
+  <div id="search-bar">
     <SearchBar :search="search" />
   </div>
-  <div class="slot" id="letter-search">
+
+  <div id="letter-search">
     <LetterSearch :classify="classify" />
   </div>
-  <div class="slot" id="results">
-    <div id="grid">
-      <Cards :cards="list" />
-    </div>
+
+  <div id="info-bar">
+    <InfoBar :numResults="dataArr.length"/>
   </div>
-  <div class="slot">
-    <Footer />
+
+  <div id="results">
+    <div id="grid">
+      <Cards :cards="dataArr" />
+    </div>
   </div>
 </template>
 
 <script setup>
-import mock_data from '@/src/data/MOCK_DATA'
+const {data: rawData} = await useFetch('/api/data')
+const rawArr = rawData.value
+</script>
 
-const {data: raw} = await useFetch("/api/data")
-let list = raw
+<script>
+export default {
+  data() {
+    return {
+      dataArr: this.rawArr
+    }
+  },
 
-console.log(raw)
-console.log(mock_data)
+  methods: {
+    search(keywords) {
+      this.resetData();
+      this.dataArr = this.dataArr.filter((card) => {
+        return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
+      });
+    },
+    
+    classify(letter) {
+      this.resetData();
+      this.dataArr = this.dataArr.filter((card) => {
+        return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
+      })
+    },
 
-const search = (keywords) => {
-  resetData();
-  list = list.filter((card) => {
-    return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
-  });
-}
+    resetData() {
+      this.dataArr = this.rawArr
+    }
+  }
 
-const classify = (letter) => {
-  resetData();
-  list = list.filter((card) => {
-    return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
-  })
-}
-
-const resetData = () => {
-  list = raw
 }
 </script>
 
-
 <style scoped>
 #search-bar {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
   text-align: center;
   background: url(@/src/assets/spring.jpg);
 }
