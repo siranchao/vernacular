@@ -29,11 +29,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ["classify"],
-}
+
+<script setup>
+const props = defineProps({
+  classify: Function
+})
 </script>
+
 
 <style scoped>
 .letter-search {

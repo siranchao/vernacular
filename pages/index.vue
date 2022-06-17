@@ -15,6 +15,7 @@
 </template>
 
 <script setup>
+const keyword = ref("")
 </script>
 
 

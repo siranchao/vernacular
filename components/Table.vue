@@ -1,29 +1,36 @@
 <template>
-    <table class="table table-hover table-bordered border-primary">
+    <table class="table table-hover table-bordered">
         <thead>
             <tr class="table-primary">
-                <th scope="col">#</th>
-                <th scope="col">ID: </th>
                 <th scope="col">Acroynm: </th>
                 <th scope="col">Meaning: </th>
+                <th scope="col">Created by: </th>
+                <th scope="col">Link: </th>
             </tr>
         </thead>
-        <tbody v-for="(rec, i) in records" :key="i">
+        <tbody v-for="rec in records" :key="rec.acroynm">
             <tr>
-                <th scope="row">{{++i}}</th>
-                <td>{{rec._id}}</td>
-                <td>{{rec.acroynm}}</td>
+                <th scope="row">{{rec.acroynm}}</th>
                 <td>{{rec.explication}}</td>
+                <td>{{rec.id}}</td>
+                <td><a v-if="rec.reference" target="_blank" :href="rec.reference">More</a></td>
             </tr>
         </tbody>
     </table>
 </template>
 
-<script>
-export default {
-  props: ["records"],
-};
+<script setup>
+const props = defineProps({
+    records: Array
+})
 </script>
 
 <style scoped>
+.table {
+    margin: 3rem auto;
+    width: 90%;
+}
+a{
+    text-decoration: none;
+}
 </style>

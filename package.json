@@ -10,9 +10,7 @@
     "nuxt": "3.0.0-rc.3"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "express": "^4.18.1",
-    "mongoose": "^6.3.6",
-    "morgan": "^1.10.0"
+    "mongoose": "^6.3.8",
+    "nuxi": "^3.0.0-rc.4"
   }
 }

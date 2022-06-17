@@ -8,17 +8,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ["search"],
 
-  data() {
-    return {
-      keyword: "",
-    };
-  },
-};
+<script setup>
+const props = defineProps({
+  search: Function
+})
+
+const keyword = ref("")
 </script>
+
 
 <style scoped>
 .search-bar {

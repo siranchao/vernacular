@@ -2,7 +2,7 @@
 <div class="info-bar">
     <div class="info-items">
         <div class="num-results"><p>{{ numResults }} results found</p></div>
-        <div class="num-acronyms"><p>_ total acronyms</p></div>
+        <div class="num-acronyms"><p>{{ totalResults }} total acronyms</p></div>
         <div class="num-per-page">
             <p>acronyms per page</p>
         </div>
@@ -10,11 +10,14 @@
 </div>
 </template>
 
-<script>
-export default {
-  props: ["numResults"],
-};
+
+<script setup>
+const props = defineProps({
+  numResults: Number,
+  totalResults: Number
+})
 </script>
+
 
 <style scoped>
 .info-bar {

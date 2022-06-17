@@ -13,51 +13,43 @@
   </div>
 
   <div id="info-bar">
-    <InfoBar :numResults="dataArr.length"/>
+    <InfoBar :numResults="data.length" :totalResults="rawArr.length"/>
   </div>
 
   <div id="results">
-    <div id="grid">
-      <Cards :cards="dataArr" />
+    <div id="grid" v-if="data.length > 0">
+      <Cards :cards="data" />
     </div>
+        <NoResults v-if="data.length === 0" id="no-results"/>
+
   </div>
 </template>
 
 <script setup>
 const {data: rawData} = await useFetch('/api/data')
 const rawArr = rawData.value
-</script>
+let data = rawData;
 
-<script>
-export default {
-  data() {
-    return {
-      dataArr: this.rawArr
-    }
-  },
+function search(keywords) {
+  resetData();
+  data.value = data.value.filter((card) => {
+    return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
+  });
+}
 
-  methods: {
-    search(keywords) {
-      this.resetData();
-      this.dataArr = this.dataArr.filter((card) => {
-        return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
-      });
-    },
-    
-    classify(letter) {
-      this.resetData();
-      this.dataArr = this.dataArr.filter((card) => {
-        return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
-      })
-    },
+function classify(letter) {
+  resetData();
+  data.value = data.value.filter((card) => {
+    return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
+  })
+}
 
-    resetData() {
-      this.dataArr = this.rawArr
-    }
-  }
-
+function resetData() {
+  data.value = rawArr
+  console.log(`data reset`)
 }
 </script>
+
 
 <style scoped>
 #search-bar {
@@ -80,5 +72,9 @@ export default {
 
 #results {
   background-color: #EDEDED;
+}
+
+#no-results{
+  opacity: 50%;
 }
 </style>

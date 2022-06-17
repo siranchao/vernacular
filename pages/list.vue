@@ -11,12 +11,7 @@
 
 <script setup>
 const {data: list} = await useFetch('/api/data')
-
 </script>
 
 <style scoped>
-.table {
-    margin: 5% auto;
-    width: 80%;
-}
 </style>

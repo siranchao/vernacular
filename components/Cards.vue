@@ -4,18 +4,30 @@
     <div class="card-body">
       <h5 class="card-title">{{ card.explication }}</h5>
       <p v-if="card.info" class="card-text">{{ card.info }}</p>
-      <a v-if="card.reference" href="{{card.reference}}"
-        class="text-primary stretched-link text-decoration-underline">Learn More</a>
+      <button v-if="card.reference" @click="followLink(card.reference)"
+        class="learn-more-btn ontario-button">Learn More</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  props: ["cards"],
-};
+<script setup>
+const props = defineProps({
+  cards: Array
+})
+
+function followLink(reference) {
+  console.log("following " + reference)
+  window.open(reference, "_blank");
+}
 </script>
 
-<style scoped>
 
+<style scoped>
+.learn-more-btn {
+  font-size: 12pt;
+  padding: 8px;
+}
+.learn-more-btn:hover {
+  font-weight: bold;
+}
 </style>
