@@ -9,41 +9,59 @@
         <form id="form-control">
             <div class="mb-3">
                 <label for="acronymInput" class="form-label">Acronym *</label>
-                <input type="text" class="form-control" id="acronymInput" aria-describedby="acronymHelp"
+                <input v-model="acronym" type="text" class="form-control" id="acronymInput" aria-describedby="acronymHelp"
                     required>
                 <div id="acronymHelp" class="form-text">Enter an acronym e.g. CEO</div>
             </div>
             <div class="mb-3">
                 <label for="fullNameInput" class="form-label">Acronym Definition *</label>
-                <input type="text" class="form-control" id="fullNameInput" aria-describedby="nameHelp" required>
+                <input v-model="meaning" type="text" class="form-control" id="fullNameInput" aria-describedby="nameHelp" required>
                 <div id="nameHelp" class="form-text">Explain the acronym in words e.g. Chief Executive Officer
                 </div>
             </div>
 
             <div class="mb-3">
                 <label for="descInput" class="form-label">Description</label>
-                <textarea class="form-control" id="descInput" rows="3"
+                <textarea v-model="desc" class="form-control" id="descInput" rows="3"
                     placeholder="Tell us more about it"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="urlInput" class="form-label">Relevant URL</label>
-                <input type="text" class="form-control" id="urlInput" placeholder="Enter url here">
+                <input v-model="url" type="text" class="form-control" id="urlInput" placeholder="Enter url here">
             </div>
 
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="submitCheck" aria-describedby="submitHelp">
+                <input v-model="anonymous" type="checkbox" class="form-check-input" id="submitCheck" aria-describedby="submitHelp">
                 <label class="form-check-label" for="submitCheck">Anonymous submission</label>
                 <div id="submitHelp" class="form-text">Your name will not be appeared on the Vernacular</div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" @click="submit">Submit</button>
         </form>
     </div>
   
 </template>
 
 <script setup>
+const acronym = ref("")
+const meaning = ref("")
+const desc = ref("")
+const url = ref("")
+const anonymous = ref(false)
+
+async function submit() {
+    await $fetch('/api/submit', {
+        method: 'POST',
+        body: {
+            acronym: acronym.value,
+            meaning: meaning.value,
+            desc: desc.value,
+            url: url.value,
+            anonymous: anonymous.value
+        }
+    })
+}
 
 </script>
 

@@ -12,5 +12,9 @@ export default defineNuxtConfig({
     },
     css: [
         "@/ontario-design-system/styles/ds-theme.css"
+    ],
+    buildModules: [
+        '@pinia/nuxt'
     ]
+
 })

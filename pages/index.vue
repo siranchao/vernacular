@@ -6,16 +6,19 @@
     <div id="main-slot">
         <div id="search-bar">
             <h3>Acronyms Dictionary</h3>
-            <input id="first-search" type="text" v-model="keyword" placeholder="Enter acronym" />
-            <button class="start-btn ontario-button" type="button">
-                <a id="start-btn-text" href="/search">Search</a>
+            <input id="first-search" type="text" v-model="keywordStore.keywords" placeholder="Enter acronym" autofocus/>
+            <button class="start-btn ontario-button" type="button" onclick="window.location.href='/search'">
+                Search
             </button>
         </div>
     </div>
 </template>
 
+
 <script setup>
-const keyword = ref("")
+import {useKeywordStore} from "@/stores/keywords"
+const keywordStore = useKeywordStore()
+
 </script>
 
 
@@ -25,6 +28,7 @@ const keyword = ref("")
     vertical-align: middle;
     background-color: #0066CC;
     margin: 0px !important;
+    color: white;
 }
 #start-btn-text {
     color: white;

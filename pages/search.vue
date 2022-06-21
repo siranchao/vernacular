@@ -20,15 +20,20 @@
     <div id="grid" v-if="data.length > 0">
       <Cards :cards="data" />
     </div>
-        <NoResults v-if="data.length === 0" id="no-results"/>
+    <NoResults v-if="data.length === 0" id="no-results"/>
 
   </div>
 </template>
 
 <script setup>
+import {useKeywordStore} from "@/stores/keywords"
+const keywordStore = useKeywordStore()
+
 const {data: rawData} = await useFetch('/api/data')
 const rawArr = rawData.value
 let data = rawData;
+
+search(keywordStore.keywords);
 
 function search(keywords) {
   resetData();
