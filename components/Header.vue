@@ -15,7 +15,7 @@
                     <div class="ontario-row">
                         <div class="ontario-columns ontario-small-12 ontario-application-subheader__container">
                             <p class="ontario-application-subheader__heading">
-                                <a href="/">Vernacular Acronym Search</a>
+                                <a href="/">Vernacular</a>
                             </p>
 
                             <div class="ontario-application-subheader__menu-container">

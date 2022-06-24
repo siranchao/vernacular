@@ -16,7 +16,7 @@
             <div class="mb-3">
                 <label for="fullNameInput" class="form-label">Acronym Definition *</label>
                 <input v-model="meaning" type="text" class="form-control" id="fullNameInput" aria-describedby="nameHelp" required>
-                <div id="nameHelp" class="form-text">Explain the acronym in words e.g. Chief Executive Officer
+                <div id="nameHelp" class="form-text">Explain your acronym e.g. Chief Executive Officer
                 </div>
             </div>
 

@@ -5,7 +5,7 @@
       <h5 class="card-title">{{ card.explication }}</h5>
       <p v-if="card.info" class="card-text">{{ card.info }}</p>
       <button v-if="card.reference" @click="followLink(card.reference)"
-        class="learn-more-btn ontario-button">Learn More</button>
+      class="position-absolute bottom-0 start-10 learn-more-btn ontario-button">Learn More</button>
     </div>
   </div>
 </template>
@@ -23,9 +23,15 @@ function followLink(reference) {
 
 
 <style scoped>
+.card-text{
+  padding-bottom: 2rem;
+}
 .learn-more-btn {
   font-size: 12pt;
-  padding: 8px;
+  padding: 5px;
+  margin: 10px 0px;
+  min-width: 6rem;
+  max-width: 8rem;
 }
 .learn-more-btn:hover {
   font-weight: bold;

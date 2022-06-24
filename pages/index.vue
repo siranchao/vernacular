@@ -6,7 +6,7 @@
     <div id="main-slot">
         <div id="search-bar">
             <h3>Acronyms Dictionary</h3>
-            <input id="first-search" type="text" v-model="keywordStore.keywords" placeholder="Enter acronym" autofocus/>
+            <input id="first-search" type="text" v-model="keywordStore.keywords" placeholder="Search OPS acronym" autofocus/>
             <button class="start-btn ontario-button" type="button" onclick="window.location.href='/search'">
                 Search
             </button>

@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar">
     <h3>Acronyms Dictionary</h3>
-    <input id="search" type="text" v-model="keywordStore.keywords" placeholder="Enter acronym" autofocus @keyup.enter="search(keywordStore.keywords)" />
+    <input id="search" type="text" v-model="keywordStore.keywords" placeholder="Search OPS acronym" autofocus @keyup.enter="search(keywordStore.keywords)" />
     <button class="btn ontario-button" @click="search(keywordStore.keywords)" :disabled="keywordStore.keywords == ''">
       Search
     </button>

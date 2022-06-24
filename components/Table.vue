@@ -4,7 +4,7 @@
             <tr class="table-primary">
                 <th scope="col">Acroynm: </th>
                 <th scope="col">Meaning: </th>
-                <th scope="col">Created by: </th>
+                <th scope="col">Contributor: </th>
                 <th scope="col">Link: </th>
             </tr>
         </thead>
@@ -32,5 +32,12 @@ const props = defineProps({
 }
 a{
     text-decoration: none;
+    color: #0066CC;
+}
+a:hover {
+    color: #002142;
+}
+a:visited {
+    color: #551A8B;
 }
 </style>
