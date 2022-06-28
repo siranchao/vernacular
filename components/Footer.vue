@@ -13,7 +13,7 @@
                 <div class="ontario-footer__copyright">
                     <a class="ontario-footer__link"
                         href="https://www.ontario.ca/page/copyright-information-c-queens-printer-ontario">&copy; Queen’s
-                        Printer for Ontario, <span class="ontario-nbsp">2012&ndash;21</span></a>
+                        Printer for Ontario, <span class="ontario-nbsp">2012&ndash;22</span></a>
                 </div>
             </div>
         </div>
