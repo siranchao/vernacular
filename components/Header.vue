@@ -30,19 +30,18 @@
                     <div class="ontario-row">
                         <div class="ontario-columns ontario-small-12 ontario-application-subheader__container">
                             <p class="ontario-application-subheader__heading">
-                                <a href="#">Vernacular</a>
+                                <a href="/">Vernacular</a>
                             </p>
 
                             <div class="ontario-application-subheader__menu-container">
                                 <ul class="ontario-application-subheader__menu ontario-show-for-large">
-                                    <li><a href="#">Link 1</a></li>
-                                    <li><a href="#">Link 2</a></li>
-                                    <li><a href="#">Link 3</a></li>
-                                    <li><a href="#">Link 4</a></li>
+                                    <li><a href="/search">Search Acronym</a></li>
+                                    <li><a href="/create">Create Acronym</a></li>
+                                    <li><a href="/list">Dictionary</a></li>
                                 </ul>
                                 <ul class="ontario-application-subheader__menu ontario-hide-for-small ontario-show-for-medium ontario-hide-for-large">
-                                    <li><a href="#">Link 1</a></li>
-                                    <li><a href="#">Link 2</a></li>
+                                    <li><a href="/search">Search Acronym</a></li>
+                                    <li><a href="/create">Create Acronym</a></li>
                                 </ul>
 
                                 <button class="ontario-header__menu-toggler ontario-header-button ontario-header-button--with-outline" id="ontario-header-menu-toggler" aria-controls="ontario-navigation" aria-label="open menu" type="button">
@@ -64,16 +63,11 @@
                     </button>
                     <div class="ontario-navigation__container">
                         <ul>
-                            <li class="ontario-show-for-small-only"><a href="#">Link
-                                    1</a></li>
-                            <li class="ontario-show-for-small-only"><a href="#">Link
-                                    2</a></li>
-                            <li class="ontario-hide-for-large"><a href="#">Link
-                                    3</a></li>
-                            <li class="ontario-hide-for-large"><a href="#">Link
-                                    4</a></li>
-                            <li class="ontario-hide-for-large"><a href="#">Link
-                                    5</a></li>
+                            <li class="ontario-show-for-small-only"><a href="/search">Search Acronym</a></li>
+                            <li class="ontario-show-for-small-only"><a href="/create">Create Acronym</a></li>
+                            <li class="ontario-hide-for-large"><a href="/list">Dictionary</a></li>
+                            <li class="ontario-hide-for-large"><a href="#">Coming Soon</a></li>
+                            <li class="ontario-hide-for-large"><a href="#">Link 5</a></li>
                             <li><a href="#">Link 6</a></li>
                             <li><a href="#">Link 7</a></li>
                             <li><a href="#">Link 8</a></li>
