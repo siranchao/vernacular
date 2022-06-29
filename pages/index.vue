@@ -18,6 +18,7 @@
 <script setup>
 import {useKeywordStore} from "@/stores/keywords"
 const keywordStore = useKeywordStore()
+keywordStore.updateKeyword();
 
 </script>
 
@@ -27,8 +28,9 @@ const keywordStore = useKeywordStore()
     display: inline-block;
     vertical-align: middle;
     background-color: #0066CC;
-    margin: 0px !important;
+    margin: 10px !important;
     color: white;
+    max-width: 55%;
 }
 #start-btn-text {
     color: white;

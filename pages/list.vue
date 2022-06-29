@@ -7,6 +7,8 @@
     <div class="container">
         <Table :records="list"/>
     </div>
+
+    <BackToTop />
 </template>
 
 <script setup>

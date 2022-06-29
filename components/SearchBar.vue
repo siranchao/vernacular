@@ -42,6 +42,7 @@ const props = defineProps({
   vertical-align: middle;
   background-color: #0066CC;
   color: white;
-  margin: 0px;
+  margin: 10px;
+  max-width: 55%;
 }
 </style>

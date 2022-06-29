@@ -9,7 +9,7 @@ export const useKeywordStore = defineStore({
     },
     actions: {
         updateKeyword() {
-            this.keywords += " add"
+            this.keywords = ""
         }
     },
     getters: {

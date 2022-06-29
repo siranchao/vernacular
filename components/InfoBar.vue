@@ -1,13 +1,16 @@
 <template>
-<div class="info-bar">
-    <div class="info-items">
-        <div class="num-results"><p>{{ numResults }} results found</p></div>
-        <div class="num-acronyms"><p>{{ totalResults }} total acronyms</p></div>
-        <div class="num-per-page">
-            <p>acronyms per page</p>
-        </div>
-    </div>
-</div>
+
+
+  <div class="ontario-callout">
+      <h2 class="ontario-callout__title ontario-h5">Start searching your acronyms</h2>
+      
+      <div class="info-bar">
+        <p class="num">{{ numResults }} Results Found</p>
+        <p class="num">{{ totalResults }} Acronyms In Total</p>
+      </div>
+      <p class="info-text">No results found? <a href="/create">Click here</a> and contribute your acronyms to our dictionary!</p>
+  </div>
+
 </template>
 
 
@@ -20,18 +23,30 @@ const props = defineProps({
 
 
 <style scoped>
-.info-bar {
-  border-top: 1px solid black;
-  background-color: #0066CC;
-  padding: 0px 100px 0px 100px;
+.ontario-callout{
+  max-width: 70%;
+  margin: 1.5rem auto;
+  padding: 1rem;
 }
-.info-items{
-  color: white;
+.info-bar{
+  color:#1a1a1a;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin: 0 auto;
+
 }
-.info-items div {
+.num {
   display: inline-block;
-  font-size: 20px;
+  font-size:18px;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 10px;
+  margin-bottom: 0;
 }
+
+.ontario-callout__title, .info-bar, .inf-text{
+  margin-bottom: 0.5rem;
+}
+
+
 </style>

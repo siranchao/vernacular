@@ -21,8 +21,9 @@
       <Cards :cards="data" />
     </div>
     <NoResults v-if="data.length === 0" id="no-results"/>
-
   </div>
+
+  <BackToTop />
 </template>
 
 <script setup>
