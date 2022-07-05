@@ -1,29 +1,31 @@
 <template>
-  <Head>
-    <Title>Vernacular - Search Acronym</Title>
-    <Meta name="description" content="Search an acronym" />
-  </Head>
+  <div>
+    <Head>
+      <Title>Vernacular - Search Acronym</Title>
+      <Meta name="description" content="Search an acronym" />
+    </Head>
 
-  <div id="search-bar">
-    <SearchBar :search="search" />
-  </div>
-
-  <div id="letter-search">
-    <LetterSearch :classify="classify" />
-  </div>
-
-  <div id="info-bar">
-    <InfoBar :numResults="data.length" :totalResults="rawArr.length"/>
-  </div>
-
-  <div id="results">
-    <div id="grid" v-if="data.length > 0">
-      <Cards :cards="data" />
+    <div id="search-bar">
+      <SearchBar :search="search" />
     </div>
-    <NoResults v-if="data.length === 0" id="no-results"/>
-  </div>
 
-  <BackToTop />
+    <div id="letter-search">
+      <LetterSearch :classify="classify" />
+    </div>
+
+    <div id="info-bar">
+      <InfoBar :numResults="data.length" :totalResults="rawArr.length"/>
+    </div>
+
+    <div id="results">
+      <div id="grid" v-if="data.length > 0">
+        <Cards :cards="data" />
+      </div>
+      <NoResults v-if="data.length === 0" id="no-results"/>
+    </div>
+    
+    <BackToTop />
+  </div>
 </template>
 
 <script setup>
@@ -82,5 +84,30 @@ function resetData() {
 
 #no-results{
   opacity: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  #grid {
+    background-color: #EDEDED;
+    width: 90vw;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 3rem;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 1400px) {
+  #grid {
+    background-color: #EDEDED;
+    width: 80vw;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 3rem;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 </style>

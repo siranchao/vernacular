@@ -1,46 +1,47 @@
 <template>
-    <Head>
-        <Title>Vernacular - Create New Acronym</Title>
-        <Meta name="description" content="Create New Acronym" />
-    </Head>
+    <div>
+        <Head>
+            <Title>Vernacular - Create New Acronym</Title>
+            <Meta name="description" content="Create New Acronym" />
+        </Head>
 
-    <div class="container">
-        <h3>Create an new acronym</h3>
-        <form id="form-control">
-            <div class="mb-3">
-                <label for="acronymInput" class="form-label">Acronym *</label>
-                <input v-model="acronym" type="text" class="form-control" id="acronymInput" aria-describedby="acronymHelp"
-                    required>
-                <div id="acronymHelp" class="form-text">Enter an acronym e.g. CEO</div>
-            </div>
-            <div class="mb-3">
-                <label for="fullNameInput" class="form-label">Acronym Definition *</label>
-                <input v-model="meaning" type="text" class="form-control" id="fullNameInput" aria-describedby="nameHelp" required>
-                <div id="nameHelp" class="form-text">Explain your acronym e.g. Chief Executive Officer
+        <div class="container">
+            <h3>Create an new acronym</h3>
+            <form id="form-control">
+                <div class="mb-3">
+                    <label for="acronymInput" class="form-label">Acronym *</label>
+                    <input v-model="acronym" type="text" class="form-control" id="acronymInput" aria-describedby="acronymHelp"
+                        required>
+                    <div id="acronymHelp" class="form-text">Enter an acronym e.g. CEO</div>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="fullNameInput" class="form-label">Acronym Definition *</label>
+                    <input v-model="meaning" type="text" class="form-control" id="fullNameInput" aria-describedby="nameHelp" required>
+                    <div id="nameHelp" class="form-text">Explain your acronym e.g. Chief Executive Officer
+                    </div>
+                </div>
 
-            <div class="mb-3">
-                <label for="descInput" class="form-label">Description</label>
-                <textarea v-model="desc" class="form-control" id="descInput" rows="3"
-                    placeholder="Tell us more about it"></textarea>
-            </div>
+                <div class="mb-3">
+                    <label for="descInput" class="form-label">Description</label>
+                    <textarea v-model="desc" class="form-control" id="descInput" rows="3"
+                        placeholder="Tell us more about it"></textarea>
+                </div>
 
-            <div class="mb-3">
-                <label for="urlInput" class="form-label">Relevant URL</label>
-                <input v-model="url" type="text" class="form-control" id="urlInput" placeholder="Enter url here">
-            </div>
+                <div class="mb-3">
+                    <label for="urlInput" class="form-label">Relevant URL</label>
+                    <input v-model="url" type="text" class="form-control" id="urlInput" placeholder="Enter url here">
+                </div>
 
-            <div class="mb-3 form-check">
-                <input v-model="anonymous" type="checkbox" class="form-check-input" id="submitCheck" aria-describedby="submitHelp">
-                <label class="form-check-label" for="submitCheck">Anonymous submission</label>
-                <div id="submitHelp" class="form-text">Your name will not be appeared on the Vernacular</div>
-            </div>
+                <div class="mb-3 form-check">
+                    <input v-model="anonymous" type="checkbox" class="form-check-input" id="submitCheck" aria-describedby="submitHelp">
+                    <label class="form-check-label" for="submitCheck">Anonymous submission</label>
+                    <div id="submitHelp" class="form-text">Your name will not be appeared on the Vernacular</div>
+                </div>
 
-            <button type="submit" class="btn btn-primary" @click="submit">Submit</button>
-        </form>
+                <button type="submit" class="btn btn-primary" @click="submit">Submit</button>
+            </form>
+        </div>
     </div>
-  
 </template>
 
 <script setup>
@@ -77,6 +78,15 @@ async function submit() {
     width: 60%;
     margin: 0 auto;
     padding-bottom: 4rem;
+}
+
+@media screen and (max-width: 700px) {
+    .container{
+        width: 80vw;
+    }
+    #form-control {
+        width: 90%;
+    }
 }
 </style>
 

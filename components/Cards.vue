@@ -27,7 +27,7 @@ function followLink(reference) {
   padding-bottom: 2rem;
 }
 .learn-more-btn {
-  font-size: 12pt;
+  font-size: 0.9rem;
   padding: 5px;
   margin: 10px 0px;
   min-width: 6rem;

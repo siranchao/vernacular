@@ -1,27 +1,20 @@
 <template>
-<div class="no-result-container">
-    <img src="@/src/assets/icon-no-result.png" class="no-result-icon"/>
-    <h1>No Acronyms Found.</h1>
-</div>
+    <div class="no-result-container">
+        <div class="info-box">
+            <img src="@/src/assets/icon-no-result.png" alt="no-result-img"/>
+            <h3>No Acronyms Found</h3>
+        </div>
 
+    </div>
 </template>
 
 <style scoped>
-.no-result-container{
-    position: relative;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 30% 70%;
-    width: 30%;
-
+.info-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.no-result-icon{
-    position: relative;
-    margin: auto;
-}
-.h1{
-    position: relative;
-    margin: auto;
+.info-box img {
+    width: 80px;
 }
 </style>

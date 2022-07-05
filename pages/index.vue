@@ -1,16 +1,28 @@
 <template>
-    <Head>
+    <div>
+        <Head>
         <Title>Vernacular - Home</Title>
         <Meta name="description" content="Home page" />
-    </Head>
-    <div id="main-slot">
-        <div id="search-bar">
-            <h3>Acronyms Dictionary</h3>
-            <input id="first-search" type="text" v-model="keywordStore.keywords" placeholder="Search OPS acronym" autofocus/>
-            <button class="start-btn ontario-button" type="button" onclick="window.location.href='/search'">
-                Search
-            </button>
-        </div>
+        </Head>
+        
+        <div id="main-slot">
+            <div id="search-bar">
+                <h3>Acronyms Dictionary</h3>
+                <input id="first-search" type="text" v-model="keywordStore.keywords" placeholder="Search OPS acronym" autofocus/>
+                <button class="start-btn ontario-button" type="button" onclick="window.location.href='/search'">
+                    Search
+                </button>
+                <div>
+                    <ul>
+                        <li :key="autocompleteItem.acroynm" 
+                        v-for="autocompleteItem in autocompleteItems()"
+                        v-text="autocompleteItem.acroynm"
+                        @click="itemClicked(autocompleteItem)"
+                        class="item"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>   
     </div>
 </template>
 
@@ -20,6 +32,19 @@ import {useKeywordStore} from "@/stores/keywords"
 const keywordStore = useKeywordStore()
 keywordStore.updateKeyword();
 
+const {data: rawData} = await useFetch('/api/data')
+const results = rawData.value;
+
+function autocompleteItems() {
+    if (keywordStore.keywords == '' || keywordStore.keywords.length < 2) {
+        return [];
+    }
+    return this.results.filter((result) => result.acroynm.toString().toLowerCase().includes(keywordStore.keywords.toLowerCase()));
+}
+function itemClicked(autocompleteItem) {
+    keywordStore.keywords = autocompleteItem.acroynm
+    window.location.href='/search'
+}
 </script>
 
 
@@ -41,8 +66,16 @@ keywordStore.updateKeyword();
     vertical-align: middle;
     font-size: 1.5em;
     height: 1.5em;
+    line-height: normal;
     margin-right: 5px;
+    text-transform: uppercase;
 }
+#first-search::placeholder {
+    font-size: 0.9em;
+    padding-left: 5px;
+    text-transform: none;
+}
+
 #main-slot {
     min-height: 70vh;
     background: url(@/src/assets/spring.jpg);
@@ -57,5 +90,36 @@ keywordStore.updateKeyword();
     padding-top: 2rem;
     padding-bottom: 2rem;
     width: 32rem;
+}
+ul {
+    list-style-type: none;
+    margin: 10px 10px;
+}
+
+ul li {
+    padding: 0 0 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: Raleway;
+}
+.item:hover{
+    border: 2px solid black;
+}
+
+@media screen and (max-width: 320px) {
+    #search-bar{
+        width: 100vw;
+    }    
+    #first-search{
+        width: 80vw;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 520px)  {
+    #search-bar{
+        width: 90vw;
+    } 
+    #first-search{
+        width: 70%;
+    }   
 }
 </style>

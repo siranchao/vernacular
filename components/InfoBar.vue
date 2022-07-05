@@ -1,8 +1,6 @@
 <template>
-
-
   <div class="ontario-callout">
-      <h2 class="ontario-callout__title ontario-h5">Start searching your acronyms</h2>
+      <h2 class="ontario-callout__title ontario-h5">Start searching your acronyms:</h2>
       
       <div class="info-bar">
         <p class="num">{{ numResults }} Results Found</p>
@@ -27,6 +25,7 @@ const props = defineProps({
   max-width: 70%;
   margin: 1.5rem auto;
   padding: 1rem;
+  border-left: .5rem solid #367a76;
 }
 .info-bar{
   color:#1a1a1a;
@@ -37,16 +36,21 @@ const props = defineProps({
 }
 .num {
   display: inline-block;
-  font-size:18px;
+  font-size:1.2rem;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.2rem;
   padding: 10px;
   margin-bottom: 0;
 }
 
-.ontario-callout__title, .info-bar, .inf-text{
+.ontario-callout__title, .info-bar, .info-text{
   margin-bottom: 0.5rem;
 }
-
-
+.info-text a{
+  color: #0066cc;
+}
+.info-text a:hover{
+  color: #00478F;
+  font-weight: bold;
+}
 </style>
