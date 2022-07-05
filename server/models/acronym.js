@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose;
 
 const RecSchema = new Schema({
-    acroynm: {
+    acronym: {
         type: String,
         required: true
     },

@@ -41,14 +41,14 @@ search(keywordStore.keywords);
 function search(keywords) {
   resetData();
   data.value = data.value.filter((card) => {
-    return card.acroynm.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
+    return card.acronym.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
   });
 }
 
 function classify(letter) {
   resetData();
   data.value = data.value.filter((card) => {
-    return card.acroynm.charAt(0).toLowerCase().includes(letter.toLowerCase());
+    return card.acronym.charAt(0).toLowerCase().includes(letter.toLowerCase());
   })
 }
 

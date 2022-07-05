@@ -1,50 +1,70 @@
 <template>
   <div class="search-bar">
     <h3>Acronyms Dictionary</h3>
-    <input id="search" type="text" v-model="keywordStore.keywords" placeholder="Search OPS acronym" autofocus @keyup.enter="search(keywordStore.keywords)" />
-    <button class="btn ontario-button" @click="search(keywordStore.keywords)" :disabled="keywordStore.keywords == ''">
+    <input
+      id="search"
+      type="text"
+      v-model="keywordStore.keywords"
+      placeholder="Search OPS acronym"
+      autofocus
+      @keyup.enter="search(keywordStore.keywords)"
+    />
+    <button
+      class="btn ontario-button"
+      @click="search(keywordStore.keywords)"
+      :disabled="keywordStore.keywords == ''"
+    >
       Search
     </button>
     <div>
-        <ul>
-            <li :key="autocompleteItem.acroynm" 
-            v-for="autocompleteItem in autocompleteItems()"
-            v-text="autocompleteItem.acroynm"
-            @click="itemClicked(autocompleteItem); search(keywordStore.keywords)"
-            class="item"></li>
-        </ul>
+      <ul>
+        <li
+          :key="autocompleteItem.acronym"
+          v-for="autocompleteItem in autocompleteItems()"
+          v-text="autocompleteItem.acronym"
+          @click="
+            itemClicked(autocompleteItem);
+            search(keywordStore.keywords);
+          "
+          class="item"
+        ></li>
+      </ul>
     </div>
   </div>
 </template>
 
 
 <script setup>
-import {useKeywordStore} from "@/stores/keywords"
-const keywordStore = useKeywordStore()
-const {data: rawData} = await useFetch('/api/data')
+import { useKeywordStore } from "@/stores/keywords";
+const keywordStore = useKeywordStore();
+const { data: rawData } = await useFetch("/api/data");
 const results = rawData.value;
 
 const props = defineProps({
-  search: Function
-})
+  search: Function,
+});
 
 function autocompleteItems() {
-    if (keywordStore.keywords == '' || keywordStore.keywords.length < 2) {
-        return [];
-    }
-    return this.results.filter((result) => result.acroynm.toString().toLowerCase().includes(keywordStore.keywords.toLowerCase()));
+  if (keywordStore.keywords == "" || keywordStore.keywords.length < 2) {
+    return [];
+  }
+  return this.results.filter((result) =>
+    result.acronym
+      .toString()
+      .toLowerCase()
+      .includes(keywordStore.keywords.toLowerCase())
+  );
 }
 function itemClicked(autocompleteItem) {
-    keywordStore.keywords = autocompleteItem.acroynm;
+  keywordStore.keywords = autocompleteItem.acronym;
 }
-
 </script>
 
 
 <style scoped>
 .search-bar {
   margin: auto;
-  background-color: rgba(255,255,255,0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   padding-top: 2rem;
   padding-bottom: 2rem;
   width: 32rem;
@@ -68,40 +88,40 @@ function itemClicked(autocompleteItem) {
 .btn {
   display: inline-block;
   vertical-align: middle;
-  background-color: #0066CC;
+  background-color: #0066cc;
   color: white;
   margin: 10px;
   max-width: 55%;
 }
 ul {
-    list-style-type: none;
-    margin: 10px 10px;
+  list-style-type: none;
+  margin: 10px 10px;
 }
 
 ul li {
-    padding: 0 0 0;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: Raleway;
+  padding: 0 0 0;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: Raleway;
 }
-.item:hover{
-    border: 2px solid black;
+.item:hover {
+  border: 2px solid black;
 }
 
 @media screen and (max-width: 320px) {
-    .search-bar{
-        width: 100vw;
-    }    
-    #search{
-        width: 80vw;
-    }
+  .search-bar {
+    width: 100vw;
+  }
+  #search {
+    width: 80vw;
+  }
 }
-@media screen and (min-width: 320px) and (max-width: 520px)  {
-    .search-bar{
-        width: 90vw;
-    } 
-    #search{
-        width: 60%;
-    }   
+@media screen and (min-width: 320px) and (max-width: 520px) {
+  .search-bar {
+    width: 90vw;
+  }
+  #search {
+    width: 60%;
+  }
 }
 </style>

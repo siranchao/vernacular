@@ -5,7 +5,7 @@ export default defineEventHandler(async event => {
     console.log(body)
 
     const newRec = new Rec({
-        acroynm: body.acronym,
+        acronym: body.acronym,
         explication: body.meaning,
         info: body.desc,
         reference: body.url
