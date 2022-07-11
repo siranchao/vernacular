@@ -8,31 +8,33 @@
     <div id="main-slot">
       <div id="search-bar">
         <h3>Acronyms Dictionary</h3>
-        <input
-          id="first-search"
-          type="text"
-          v-model="keywordStore.keywords"
-          placeholder="Search OPS acronym"
-          autofocus
-        />
+        <div class="input-bar">
+          <input
+            id="first-search"
+            type="text"
+            v-model="keywordStore.keywords"
+            placeholder="Search OPS acronym"
+            list="datalistOptions"
+            autofocus
+            @keyup.enter="itemClicked"
+          />
+
+          <datalist id="datalistOptions">
+            <option
+              :key="autocompleteItem.acronym"
+              v-text="autocompleteItem.acronym"
+              v-for="autocompleteItem in autocompleteItems()"
+            ></option>
+          </datalist>
+        </div>
+
         <button
           class="start-btn ontario-button"
           type="button"
-          onclick="window.location.href='/search'"
+          @click="itemClicked"
         >
           Search
         </button>
-        <div>
-          <ul>
-            <li
-              :key="autocompleteItem.acronym"
-              v-for="autocompleteItem in autocompleteItems()"
-              v-text="autocompleteItem.acronym"
-              @click="itemClicked(autocompleteItem)"
-              class="item"
-            ></li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -58,8 +60,7 @@ function autocompleteItems() {
       .includes(keywordStore.keywords.toLowerCase())
   );
 }
-function itemClicked(autocompleteItem) {
-  keywordStore.keywords = autocompleteItem.acronym;
+function itemClicked() {
   window.location.href = "/search";
 }
 </script>
@@ -107,12 +108,16 @@ function itemClicked(autocompleteItem) {
   padding-top: 2rem;
   padding-bottom: 2rem;
   width: 32rem;
+  border-radius: 0.375rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-ul {
+.input-bar {
+  display: inline-block;
+}
+/* ul {
   list-style-type: none;
   margin: 10px 10px;
 }
-
 ul li {
   padding: 0 0 0;
   cursor: pointer;
@@ -121,7 +126,7 @@ ul li {
 }
 .item:hover {
   border: 2px solid black;
-}
+} */
 
 @media screen and (max-width: 320px) {
   #search-bar {

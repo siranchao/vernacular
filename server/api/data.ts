@@ -4,8 +4,7 @@ db()
 
 export default defineEventHandler(async event => {
     console.log(`query all data`)
-    const data = await Rec.find({
-    })
+    const data = await Rec.find({}).exec()
     return data
 })
 

@@ -7,14 +7,19 @@ export default defineEventHandler(async event => {
     const newRec = new Rec({
         acronym: body.acronym,
         explication: body.meaning,
-        info: body.desc,
-        reference: body.url
+        info: !body.desc ? "No infomation available" : body.desc,
+        reference: body.url,
+        creator: body.anonymous || !body.name ? "Anonym" : body.name,
     })
-    newRec.save((err) => {
-        if (err) {
-            console.log(`Fail to save new document: ${err}`)
-        } else {
-            console.log(`document saved`)
-        }
-    })
+
+    try {
+        const createdRec = await newRec.save()
+        console.log(`document saved`)
+        console.log(createdRec);
+        return 200
+    }
+    catch (error) {
+        console.log(`Fail to save new document: ${error}`)
+        return 400
+    }
 })

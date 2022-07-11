@@ -14,26 +14,27 @@
     </div>
 
     <div id="info-bar">
-      <InfoBar :numResults="data.length" :totalResults="rawArr.length"/>
+      <InfoBar :numResults="data.length" :totalResults="rawArr.length" />
     </div>
 
     <div id="results">
       <div id="grid" v-if="data.length > 0">
         <Cards :cards="data" />
       </div>
-      <NoResults v-if="data.length === 0" id="no-results"/>
+      <NoResults v-if="data.length === 0" id="no-results" />
     </div>
-    
+
     <BackToTop />
   </div>
 </template>
 
 <script setup>
-import {useKeywordStore} from "@/stores/keywords"
-const keywordStore = useKeywordStore()
+import BackToTop from "@/components/button/BackToTop.vue";
+import { useKeywordStore } from "@/stores/keywords";
+const keywordStore = useKeywordStore();
 
-const {data: rawData} = await useFetch('/api/data')
-const rawArr = rawData.value
+const { data: rawData } = await useFetch("/api/data");
+const rawArr = rawData.value;
 let data = rawData;
 
 search(keywordStore.keywords);
@@ -41,7 +42,10 @@ search(keywordStore.keywords);
 function search(keywords) {
   resetData();
   data.value = data.value.filter((card) => {
-    return card.acronym.toLowerCase().includes(keywords.toLowerCase()) || card.explication.toLowerCase().includes(keywords.toLowerCase());
+    return (
+      card.acronym.toLowerCase().includes(keywords.toLowerCase()) ||
+      card.explication.toLowerCase().includes(keywords.toLowerCase())
+    );
   });
 }
 
@@ -49,12 +53,12 @@ function classify(letter) {
   resetData();
   data.value = data.value.filter((card) => {
     return card.acronym.charAt(0).toLowerCase().includes(letter.toLowerCase());
-  })
+  });
 }
 
 function resetData() {
-  data.value = rawArr
-  console.log(`data reset`)
+  data.value = rawArr;
+  console.log(`data reset`);
 }
 </script>
 
@@ -68,7 +72,7 @@ function resetData() {
 }
 
 #grid {
-  background-color: #EDEDED;
+  background-color: #ededed;
   width: 80vw;
   margin: auto;
   padding-top: 30px;
@@ -79,16 +83,16 @@ function resetData() {
 }
 
 #results {
-  background-color: #EDEDED;
+  background-color: #ededed;
 }
 
-#no-results{
+#no-results {
   opacity: 50%;
 }
 
 @media screen and (max-width: 600px) {
   #grid {
-    background-color: #EDEDED;
+    background-color: #ededed;
     width: 90vw;
     margin: auto;
     padding-top: 30px;
@@ -100,7 +104,7 @@ function resetData() {
 }
 @media screen and (min-width: 1400px) {
   #grid {
-    background-color: #EDEDED;
+    background-color: #ededed;
     width: 80vw;
     margin: auto;
     padding-top: 30px;

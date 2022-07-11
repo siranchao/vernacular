@@ -1,14 +1,26 @@
 <template>
   <div class="search-bar">
     <h3>Acronyms Dictionary</h3>
-    <input
-      id="search"
-      type="text"
-      v-model="keywordStore.keywords"
-      placeholder="Search OPS acronym"
-      autofocus
-      @keyup.enter="search(keywordStore.keywords)"
-    />
+    <div class="input-bar">
+      <input
+        id="search"
+        type="text"
+        v-model="keywordStore.keywords"
+        placeholder="Search OPS acronym"
+        autofocus
+        list="datalistOptions"
+        @keyup.enter="search(keywordStore.keywords)"
+      />
+
+      <datalist id="datalistOptions">
+        <option
+          :key="autocompleteItem.acronym"
+          v-text="autocompleteItem.acronym"
+          v-for="autocompleteItem in autocompleteItems()"
+        ></option>
+      </datalist>
+    </div>
+
     <button
       class="btn ontario-button"
       @click="search(keywordStore.keywords)"
@@ -16,20 +28,6 @@
     >
       Search
     </button>
-    <div>
-      <ul>
-        <li
-          :key="autocompleteItem.acronym"
-          v-for="autocompleteItem in autocompleteItems()"
-          v-text="autocompleteItem.acronym"
-          @click="
-            itemClicked(autocompleteItem);
-            search(keywordStore.keywords);
-          "
-          class="item"
-        ></li>
-      </ul>
-    </div>
   </div>
 </template>
 
@@ -68,6 +66,8 @@ function itemClicked(autocompleteItem) {
   padding-top: 2rem;
   padding-bottom: 2rem;
   width: 32rem;
+  border-radius: 0.375rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #search {
@@ -93,19 +93,9 @@ function itemClicked(autocompleteItem) {
   margin: 10px;
   max-width: 55%;
 }
-ul {
-  list-style-type: none;
-  margin: 10px 10px;
-}
 
-ul li {
-  padding: 0 0 0;
-  cursor: pointer;
-  font-size: 1rem;
-  font-family: Raleway;
-}
-.item:hover {
-  border: 2px solid black;
+.input-bar {
+  display: inline-block;
 }
 
 @media screen and (max-width: 320px) {

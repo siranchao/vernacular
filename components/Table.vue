@@ -12,7 +12,7 @@
       <tr>
         <th scope="row" class="key">{{ rec.acronym }}</th>
         <td class="meaning">{{ rec.explication }}</td>
-        <td class="creator">Unknown user</td>
+        <td class="creator">{{ rec.creator }}</td>
         <td class="link">
           <a v-if="rec.reference" target="_blank" :href="rec.reference">More</a>
         </td>
