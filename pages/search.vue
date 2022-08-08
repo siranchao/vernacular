@@ -28,6 +28,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      htmlAttrs: {
+        lang: "en",
+      },
+    };
+  },
+};
+</script>
+
 <script setup>
 import BackToTop from "@/components/button/BackToTop.vue";
 import { useKeywordStore } from "@/stores/keywords";

@@ -7,7 +7,7 @@
 
     <div class="container">
       <h3>Create an new acronym</h3>
-      <form id="form-control">
+      <form id="form-control" @submit.prevent="submit()">
         <div class="mb-3">
           <label for="acronymInput" class="form-label">Acronym *</label>
           <input
@@ -86,19 +86,48 @@
           </div>
         </div>
 
-        <button class="btn btn-primary" @click="submit">Submit</button>
+        <div class="submit-btn-group">
+          <button class="btn btn-secondary" type="button" @click="reset()">
+            Reset
+          </button>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
       </form>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      htmlAttrs: {
+        lang: "en",
+      },
+    };
+  },
+};
+</script>
+
 <script setup>
+import { useKeywordStore } from "@/stores/keywords";
+const keywordStore = useKeywordStore();
+
 const acronym = ref("");
 const meaning = ref("");
 const desc = ref("");
 const url = ref("");
 const contributor = ref("");
 const anonymous = ref(false);
+
+function reset() {
+  acronym.value = "";
+  meaning.value = "";
+  desc.value = "";
+  url.value = "";
+  contributor.value = "";
+  anonymous.value = false;
+}
 
 async function submit() {
   const res = await $fetch("/api/submit", {
@@ -114,20 +143,19 @@ async function submit() {
   });
 
   console.log(res);
-  if (res === 400) {
+  if (res.code === 400) {
     alert(`Submission Failed, Please try again`);
   }
 
-  if (res === 200) {
+  if (res.code === 200) {
     alert(
-      `New acronym: ${acronym.value.toUpperCase()} has been created. 
-      Thank you for your contribution!`
+      `New acronym: ${res.data.acronym} has been created\n\nThank you for your contribution!`
     );
-    //return navigateTo("/search");
+    keywordStore.keywords = res.data.acronym;
+    return navigateTo("/search");
   }
 }
 </script>
-
 
 
 <style scoped>
@@ -140,6 +168,15 @@ async function submit() {
   width: 60%;
   margin: 0 auto;
   padding-bottom: 4rem;
+}
+
+#acronymInput {
+  text-transform: uppercase;
+}
+
+.submit-btn-group > .btn {
+  min-width: 5em;
+  margin-right: 5%;
 }
 
 @media screen and (max-width: 700px) {

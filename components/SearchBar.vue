@@ -2,15 +2,27 @@
   <div class="search-bar">
     <h3>Acronyms Dictionary</h3>
     <div class="input-bar">
-      <input
-        id="search"
-        type="text"
-        v-model="keywordStore.keywords"
-        placeholder="Search OPS acronym"
-        autofocus
-        list="datalistOptions"
-        @keyup.enter="search(keywordStore.keywords)"
-      />
+      <label for="search" class="search-label"
+        >Search Bar for OPS acronyms</label
+      >
+
+      <form class="input-warpper">
+        <input
+          id="search"
+          type="text"
+          v-model="keywordStore.keywords"
+          placeholder="Search OPS acronym"
+          autofocus
+          list="datalistOptions"
+          @keyup.enter="search(keywordStore.keywords)"
+        />
+
+        <button
+          class="btn-close"
+          aria-label="Close"
+          @click="resetInput()"
+        ></button>
+      </form>
 
       <datalist id="datalistOptions">
         <option
@@ -53,8 +65,13 @@ function autocompleteItems() {
       .includes(keywordStore.keywords.toLowerCase())
   );
 }
+
 function itemClicked(autocompleteItem) {
   keywordStore.keywords = autocompleteItem.acronym;
+}
+
+function resetInput() {
+  keywordStore.updateKeyword();
 }
 </script>
 
@@ -78,9 +95,10 @@ function itemClicked(autocompleteItem) {
   line-height: normal;
   margin-right: 5px;
   text-transform: uppercase;
+  border-radius: 0.375rem;
 }
 #search::placeholder {
-  font-size: 0.9em;
+  font-size: 0.8em;
   text-transform: none;
   padding-left: 5px;
 }
@@ -98,6 +116,29 @@ function itemClicked(autocompleteItem) {
   display: inline-block;
 }
 
+/* Add styling for resetable input box */
+.input-warpper {
+  position: relative;
+}
+.input-warpper input:placeholder-shown + button {
+  opacity: 0;
+  pointer-events: none;
+}
+.input-warpper button {
+  position: absolute;
+  border: none;
+  display: block;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  right: 5%;
+  margin: auto;
+  padding: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
 @media screen and (max-width: 320px) {
   .search-bar {
     width: 100vw;
@@ -113,5 +154,12 @@ function itemClicked(autocompleteItem) {
   #search {
     width: 60%;
   }
+  .input-warpper button {
+    right: 20%;
+  }
+}
+
+.search-label {
+  display: none;
 }
 </style>

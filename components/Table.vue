@@ -2,7 +2,7 @@
   <table class="table table-hover table-bordered table-responsive">
     <thead>
       <tr class="table-primary">
-        <th scope="col">acronym:</th>
+        <th scope="col">Acronym:</th>
         <th scope="col">Meaning:</th>
         <th scope="col">Contributor:</th>
         <th scope="col">Link:</th>

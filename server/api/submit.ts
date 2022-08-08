@@ -5,21 +5,32 @@ export default defineEventHandler(async event => {
     console.log(body)
 
     const newRec = new Rec({
-        acronym: body.acronym,
-        explication: body.meaning,
-        info: !body.desc ? "No infomation available" : body.desc,
-        reference: body.url,
-        creator: body.anonymous || !body.name ? "Anonym" : body.name,
+        acronym: body.acronym.trim().toUpperCase(),
+        explication: capitalize(body.meaning.trim()),
+        info: !body.desc ? "No infomation available" : body.desc.trim(),
+        reference: body.url.trim(),
+        creator: body.anonymous || !body.name ? "Anonym" : capitalize(body.name.trim()),
     })
 
     try {
         const createdRec = await newRec.save()
         console.log(`document saved`)
         console.log(createdRec);
-        return 200
+        return { code: 200, data: createdRec }
     }
     catch (error) {
         console.log(`Fail to save new document: ${error}`)
-        return 400
+        return { code: 400 }
     }
 })
+
+function capitalize(text: String) {
+    const val = text
+        .toLowerCase()
+        .split(' ')
+        .map(([first, ...rest]) => {
+            return first.toUpperCase() + rest.join('')
+        })
+
+    return val.join(' ')
+}

@@ -9,15 +9,28 @@
       <div id="search-bar">
         <h3>Acronyms Dictionary</h3>
         <div class="input-bar">
-          <input
-            id="first-search"
-            type="text"
-            v-model="keywordStore.keywords"
-            placeholder="Search OPS acronym"
-            list="datalistOptions"
-            autofocus
-            @keyup.enter="itemClicked"
-          />
+          <label for="first-search" class="search-label"
+            >Search Bar for OPS acronyms</label
+          >
+
+          <form class="input-warpper">
+            <input
+              id="first-search"
+              type="text"
+              v-model="keywordStore.keywords"
+              placeholder="Search OPS acronym"
+              list="datalistOptions"
+              autofocus
+              @keyup.enter="itemClicked"
+            />
+
+            <button
+              type="reset"
+              class="btn-close"
+              aria-label="Close"
+              @click="resetInput()"
+            ></button>
+          </form>
 
           <datalist id="datalistOptions">
             <option
@@ -40,11 +53,22 @@
   </div>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      htmlAttrs: {
+        lang: "en",
+      },
+    };
+  },
+};
+</script>
 
 <script setup>
 import { useKeywordStore } from "@/stores/keywords";
 const keywordStore = useKeywordStore();
-keywordStore.updateKeyword();
+resetInput();
 
 const { data: rawData } = await useFetch("/api/data");
 const results = rawData.value;
@@ -60,8 +84,13 @@ function autocompleteItems() {
       .includes(keywordStore.keywords.toLowerCase())
   );
 }
+
 function itemClicked() {
   window.location.href = "/search";
+}
+
+function resetInput() {
+  keywordStore.updateKeyword();
 }
 </script>
 
@@ -87,9 +116,10 @@ function itemClicked() {
   line-height: normal;
   margin-right: 5px;
   text-transform: uppercase;
+  border-radius: 0.375rem;
 }
 #first-search::placeholder {
-  font-size: 0.9em;
+  font-size: 0.8em;
   padding-left: 5px;
   text-transform: none;
 }
@@ -114,19 +144,29 @@ function itemClicked() {
 .input-bar {
   display: inline-block;
 }
-/* ul {
-  list-style-type: none;
-  margin: 10px 10px;
+
+/* Add styling for resetable input box */
+.input-warpper {
+  position: relative;
 }
-ul li {
-  padding: 0 0 0;
+.input-warpper input:placeholder-shown + button {
+  opacity: 0;
+  pointer-events: none;
+}
+.input-warpper button {
+  position: absolute;
+  border: none;
+  display: block;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  right: 5%;
+  margin: auto;
+  padding: 5px;
+  outline: none;
   cursor: pointer;
-  font-size: 1rem;
-  font-family: Raleway;
+  transition: 0.5s;
 }
-.item:hover {
-  border: 2px solid black;
-} */
 
 @media screen and (max-width: 320px) {
   #search-bar {
@@ -143,5 +183,12 @@ ul li {
   #first-search {
     width: 70%;
   }
+  .input-warpper button {
+    right: 15%;
+  }
+}
+
+.search-label {
+  display: none;
 }
 </style>
